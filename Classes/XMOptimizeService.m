@@ -23,7 +23,7 @@
 #import "SCMemoryManagement.h"
 #import "SCLog.h"
 
-#define DEFAULT_DISTANCE 25
+#define DEFAULT_DISTANCE 5
 
 @interface XMOptimizeService (PrivateMethods)
 
