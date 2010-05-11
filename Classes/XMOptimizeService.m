@@ -23,8 +23,6 @@
 #import "SCMemoryManagement.h"
 #import "SCLog.h"
 
-#define DEFAULT_DISTANCE 5
-
 @interface XMOptimizeService (PrivateMethods)
 
 - (XMGraph *)parseResponse:(ASIHTTPRequest *)request;
@@ -70,21 +68,11 @@
 - (NSUInteger)distance
 {
 	NSNumber *d = [_params objectForKey:kXMDistance];
-	if (!d)
-	{
-		return DEFAULT_DISTANCE;
-	}
-	
 	return [d unsignedIntValue];
 }
 
 - (void)setDistance:(NSUInteger)distance
 {
-	if (distance < DEFAULT_DISTANCE)
-	{
-		[self setDistance:DEFAULT_DISTANCE];
-	}
-	
 	[_params setObject:[NSNumber numberWithUnsignedInt:distance] forKey:kXMDistance];
 }
 

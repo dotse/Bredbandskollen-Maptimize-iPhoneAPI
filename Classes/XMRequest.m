@@ -93,7 +93,7 @@ const NSString *kXMOffset		=	@"o";
 
 + (NSString *)stringForParams:(NSDictionary *)params
 {
-	NSMutableString *paramsString =  [NSMutableString stringWithString:@""];
+	NSMutableString *paramsString = [NSMutableString stringWithString:@""];
 	
 	NSObject *distance = [params objectForKey:kXMDistance];
 	if ([distance isKindOfClass:[NSNumber class]])
