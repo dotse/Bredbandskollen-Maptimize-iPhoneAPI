@@ -224,6 +224,8 @@
 															 zoomLevel:zoomLevel
 																params:params];
 	
+	[params release];
+	
 	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								 [NSNumber numberWithUnsignedInt:zoomLevel], @"zoomLevel", nil];
 	
@@ -250,6 +252,8 @@
 
 - (void)parseClusterizeRequest:(id)data
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	ASIHTTPRequest *request = data;
 	XMGraph *graph = [self parseResponse:request];
 	if (graph)
@@ -258,7 +262,8 @@
 		[info setObject:graph forKey:@"graph"];
 		[self performSelectorOnMainThread:@selector(clusterizeRequestParsed:) withObject:request waitUntilDone:YES];
 	}
-	[graph release];
+	
+	[pool release];
 }
 
 - (void)clusterizeRequestParsed:(ASIHTTPRequest *)request
@@ -271,6 +276,8 @@
 
 - (void)selectRequestDone:(ASIHTTPRequest *)request
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	XMGraph *graph = [self parseResponse:request];
 	if (graph)
 	{
@@ -279,7 +286,8 @@
 			[self.delegate optimizeService:self didSelect:graph userInfo:[request.userInfo objectForKey:@"userInfo"]];
 		}
 	}
-	[graph release];
+	
+	[pool release];
 }
 
 - (void)requestWentWrong:(ASIHTTPRequest *)request
@@ -387,7 +395,7 @@
 	[projection release];
 	
 	XMGraph *graph = [[XMGraph alloc] initWithClusters:parsedClusters markers:parsedMarkers totalCount:totalCount];
-	return graph;
+	return [graph autorelease];
 }
 
 - (XMCluster *)parseCluster:(NSDictionary *)clusterDict
@@ -424,6 +432,8 @@
 		cluster.count = count;
 	}
 	
+	[data release];
+	
 	return cluster;
 }
 
@@ -450,6 +460,8 @@
 		marker = [[[XMMarker alloc] initWithCoordinate:coordinate data:data] autorelease];
 		marker.identifier = identifier;
 	}
+	
+	[data release];
 	
 	return marker;
 }

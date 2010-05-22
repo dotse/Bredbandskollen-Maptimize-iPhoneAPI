@@ -170,7 +170,7 @@ const NSString *kXMOffset		=	@"o";
 	
     NSMutableString *temp = [string mutableCopy];
 	
-    for(NSUInteger i = 0; i < len; i++)
+    for (NSUInteger i = 0; i < len; i++)
 	{
 	    [temp replaceOccurrencesOfString:[escapeChars objectAtIndex:i]
 							  withString:[replaceChars objectAtIndex:i]
