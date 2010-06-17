@@ -332,11 +332,7 @@
 	{
 		[self notifyErrorInMainThread:[NSError errorWithDomain:XM_OPTIMIZE_ERROR_DOMAIN
 														  code:XM_OPTIMIZE_RESPONSE_INVALID
-													  userInfo:[request.userInfo objectForKey:@"userInfo"]]];
-		
-		/*[self.delegate optimizeService:self failedWithError:[NSError errorWithDomain:XM_OPTIMIZE_ERROR_DOMAIN
-																				code:XM_OPTIMIZE_RESPONSE_INVALID
-																			userInfo:nil]];*/
+													  userInfo:nil]];
 		return nil;
 	}
 	
@@ -345,11 +341,7 @@
 	{
 		[self notifyErrorInMainThread:[NSError errorWithDomain:XM_OPTIMIZE_ERROR_DOMAIN
 														  code:XM_OPTIMIZE_RESPONSE_SUCCESS_NO
-													  userInfo:[request.userInfo objectForKey:@"userInfo"]]];
-		
-		/*[self.delegate optimizeService:self failedWithError:[NSError errorWithDomain:XM_OPTIMIZE_ERROR_DOMAIN
-																				code:XM_OPTIMIZE_RESPONSE_SUCCESS_NO
-																			userInfo:nil]];*/
+													  userInfo:nil]];
 		return nil;
 	}
 	
